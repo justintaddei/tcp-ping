@@ -1,5 +1,5 @@
 {
-  "name": "@network-util/tcp-ping",
+  "name": "tcp-ping",
   "version": "1.0.0",
   "description": "A simple TCP ping util, written in Typescript, to test the connectivity of a device.",
   "main": "dist/index.js",
