@@ -3,7 +3,7 @@
 [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat)](https://github.com/prettier/prettier)
 ![](https://img.shields.io/github/issues-raw/justintaddei/tcp-ping.svg?style=flat)
 
-A simple TCP ping util, written in Typescript, to test the connectivity of a host.
+A simple TCP ping util, written in Typescript, to test the reachability and latency of a host.
 
 ## Installation
 
