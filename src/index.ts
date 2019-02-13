@@ -175,6 +175,8 @@ export async function ping(options?: IPingUserOptions): Promise<IPingResult> {
   // Make sure this is a real IP address
   if (!isIP(opts.address)) throw Error('Invalid IP')
 
+  if (opts.port < 1) throw RangeError('Negative port')
+
   /**
    * An array of all the connection attempts
    */
@@ -251,7 +253,7 @@ export async function ping(options?: IPingUserOptions): Promise<IPingResult> {
  * @param address The address to probe
  * @param timeout The timeout of the probe
  */
-export async function probe(port: number, address: string = 'localhost', timeout: number = 5000): Promise<boolean> {
+export async function probe(port: number, address: string = '127.0.0.1', timeout: number = 3000): Promise<boolean> {
   // Ping the host
   const result = await ping({ address, port, timeout, attempts: 1 })
 
