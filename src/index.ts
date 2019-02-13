@@ -26,7 +26,7 @@ export interface IPingOptions {
 /**
  * Ping Options
  */
-export interface IPingUserOptions {
+export interface IPingPartialOptions {
   /**
    * The IP address of the device being pinged
    */
@@ -161,7 +161,7 @@ function connect({ address, port, timeout }: IPingOptions): Promise<IConnectionA
  * in the form of an `IPingResult` object
  * @param options The `IPingOptions` object
  */
-export async function ping(options?: IPingUserOptions): Promise<IPingResult> {
+export async function ping(options?: IPingPartialOptions): Promise<IPingResult> {
   // Default ping options
   const opts: IPingOptions = {
     address: '127.0.0.1',
