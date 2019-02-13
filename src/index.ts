@@ -185,7 +185,9 @@ export async function ping(options?: IPingPartialOptions): Promise<IPingResult> 
   // Try to connect to the given host
   for (let i = 0; i < opts.attempts; i++)
     connectionResults.push({
-      attemptNumber: i,
+      // i + 1 so the first attempt is `attempt 1`
+      // instead of `attempt 0`
+      attemptNumber: i + 1,
       result: await connect(opts)
     })
 
