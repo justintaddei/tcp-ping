@@ -3,19 +3,22 @@
 [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat)](https://github.com/prettier/prettier)
 ![](https://img.shields.io/github/issues-raw/justintaddei/tcp-ping.svg?style=flat)
 
-A simple TCP ping util, written in Typescript, to test the reachability and latency of a host.
+A simple promise-based TCP ping util, written in Typescript, to test the reachability and latency of a host.
 
 ## Installation
 
 ```bash
-$ npm install @network/tcp-ping --save
+$ npm install @network-utils/tcp-ping --save
 ```
 
 ## Usage
 
-`ping(options: IPingPartialOptions): Promise<IPingResult>`  
+## `ping(options?: IPingPartialOptions): Promise<IPingResult>`
+
 Pings the given host and returns an object containing the latency of the connection
 and any errors that may have occured.
+
+> **NOTE:** Attempts are not concurrent. As such if a host is unreachable and you provide options { attempts: 60, timeout: 1000 } then `ping` will not resolve for a full minute!
 
 ```typescript
 import { ping } from '@network/tcp-ping'
@@ -38,31 +41,33 @@ ping({
   console.log('ping result:', result)
 
 
-    //ping result:
+    // ping result:
     {
-        averageLatency: 19.2753,
-        errors: [
-            {
-                attempt: 3,
-                error: Error('Request timeout')
-            }
-        ],
-        maximumLatency: 35.1978,
-        minimumLatency: 3.7716,
-        options: {
-                address: '192.168.1.47',
-                attempts: 10,
-                port: 80,
-                timeout: 3000
+      averageLatency: 19.2753,
+      errors: [
+        {
+          // Which attempt failed
+          attempt: 3,
+          error: Error('Request timeout')
         }
+      ],
+      maximumLatency: 35.1978,
+      minimumLatency: 3.7716,
+      options: {
+        address: '192.168.1.47',
+        attempts: 10,
+        port: 80,
+        timeout: 3000
+      }
     }
 })
 ```
 
-> **NOTE:** Attempts are not concurrent. As such if a host is unreachable and you provide options { attempts: 60, timeout: 1000 } then `ping` will not resolve for a full minute!
+## `probe(port: number, address?: string, timeout?: number): Promise<boolean>`
 
-`probe(port: number, address: string = '127.0.0.1', timeout: number = 3000): Promise<boolean>`  
-Makes one attempt to reach the host and return a boolean indicating whether it was successful or not
+Makes one attempt to reach the host and return a boolean indicating whether it was successful or not.  
+If `address` is not provided it will default to `'127.0.0.1'`.  
+If `timeout` is not provided it will default to `3000`.
 
 ```typescript
 import { probe } from '@network/tcp-ping'
@@ -71,4 +76,28 @@ probe(80, '192.168.1.47', 500).then(hostReachable => {
   if (hostReachable) console.log('The host is reachable 🙌')
   else console.log('The host is not reachable 🤐')
 })
+
+// Or
+
+const hostReachable = await probe(80, '192.168.1.47', 500)
 ```
+
+## Errors
+
+All methods will throw an `"Invalid IP"` error if the `address` provided is malformed.  
+All methods will throw a `"Negative port"` error if `port < 1`.
+
+---
+
+## Testing
+
+```bash
+$ git clone https://github.com/justintaddei/tcp-ping.git
+$ cd tcp-ping
+$ npm install
+$ npm test
+```
+
+## License
+
+MIT
