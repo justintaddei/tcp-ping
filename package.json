@@ -1,7 +1,7 @@
 {
-  "name": "tcp-ping",
+  "name": "@network/tcp-ping",
   "version": "1.0.0",
-  "description": "A simple TCP ping util, written in Typescript, to test the connectivity of a device.",
+  "description": "A simple TCP ping util, written in Typescript, to test the connectivity of a host.",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
@@ -18,6 +18,13 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/justintaddei/tcp-ping.git"
+  },
+  "bugs": {
+    "url": "https://github.com/justintaddei/tcp-ping/issues"
+  },
+  "homepage": "https://github.com/justintaddei/tcp-ping",
+  "engines": {
+    "node": ">=8.10.0"
   },
   "keywords": [
     "tcp",
@@ -40,9 +47,7 @@
     "ts-jest": "^23.10.5",
     "tslint": "^5.12.1",
     "tslint-config-prettier": "^1.18.0",
-    "typescript": "^3.3.3"
-  },
-  "dependencies": {
+    "typescript": "^3.3.3",
     "@types/node": "^11.9.0"
   }
 }
