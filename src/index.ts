@@ -1,4 +1,4 @@
-import { Socket } from 'net'
+import { isIP, Socket } from 'net'
 
 /**
  * Ping Options
@@ -164,13 +164,16 @@ function connect({ address, port, timeout }: IPingOptions): Promise<IConnectionA
 export async function ping(options?: IPingUserOptions): Promise<IPingResult> {
   // Default ping options
   const opts: IPingOptions = {
-    address: 'localhost',
+    address: '127.0.0.1',
     attempts: 10,
     port: 80,
     timeout: 3000,
     // Otherwrite default options
     ...options
   }
+
+  // Make sure this is a real IP address
+  if (!isIP(opts.address)) throw Error('Invalid IP')
 
   /**
    * An array of all the connection attempts
