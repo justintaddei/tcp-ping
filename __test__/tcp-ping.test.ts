@@ -1,22 +1,15 @@
-import { createServer } from 'net'
+jest.mock('net')
+
 import { ping, probe } from '../src/index'
 
 describe('Ping localhost', () => {
-  test('Ping 127.0.0.1 on an open port', done => {
-    expect.assertions(1)
-    const server = createServer()
-
-    server.on('listening', async () => {
-      await expect(ping({ port: 8124 })).resolves.toBeInstanceOf(Object)
-      server.close()
-      done()
-    })
-
-    server.listen(8124)
+  test('Ping 127.0.0.1 on an open port', async done => {
+    await expect(ping({ port: 1 })).resolves.toBeInstanceOf(Object)
+    done()
   })
 
   test('Pinging 127.0.0.1 on a closed port times out', async done => {
-    await expect(ping({ port: 8123, attempts: 3, timeout: 1000 })).resolves.toHaveProperty(
+    await expect(ping({ port: 2, attempts: 3, timeout: 1000 })).resolves.toHaveProperty(
       ['errors', 0, 'error'],
       Error('Request timeout')
     )
@@ -25,21 +18,13 @@ describe('Ping localhost', () => {
 })
 
 describe('Probe localhost', () => {
-  test('Probe 127.0.0.1 on an open port', done => {
-    expect.assertions(1)
-    const server = createServer()
-
-    server.on('listening', async () => {
-      await expect(probe(8125)).resolves.toBe(true)
-      server.close()
-      done()
-    })
-
-    server.listen(8125)
+  test('Probe 127.0.0.1 on an open port', async done => {
+    await expect(probe(1)).resolves.toBe(true)
+    done()
   })
 
   test('Probe 127.0.0.1 on a closed port', async done => {
-    await expect(probe(8123)).resolves.toBe(false)
+    await expect(probe(2)).resolves.toBe(false)
     done()
   })
 })
