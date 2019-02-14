@@ -1,7 +1,13 @@
 # tcp-ping
 
-[![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat)](https://github.com/prettier/prettier)
+![](https://img.shields.io/travis/justintaddei/tcp-ping.svg?style=flat)
 ![](https://img.shields.io/github/issues-raw/justintaddei/tcp-ping.svg?style=flat)
+![](https://img.shields.io/npm/v/@network-utils/tcp-ping.svg?style=flat)
+![](https://img.shields.io/npm/dt/@network-utils/tcp-ping.svg?style=flat)
+![](https://img.shields.io/npm/l/@network-utils/tcp-ping.svg?style=flat)
+[![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat)](https://github.com/prettier/prettier)
+![](https://img.shields.io/github/languages/top/justintaddei/tcp-ping.svg?colorB=blue&style=flat)
+![](https://img.shields.io/badge/status-awesome-red.svg?style=flat)
 
 A simple promise-based TCP ping util, written in Typescript, to test the reachability and latency of a host.
 
