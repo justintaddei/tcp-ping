@@ -24,29 +24,6 @@ export interface IPingOptions {
 }
 
 /**
- * Ping Options
- */
-export interface IPingPartialOptions {
-  /**
-   * The IP address of the device being pinged
-   */
-  address?: string
-  /**
-   * The port to ping
-   */
-  port?: number
-  /**
-   * The number of times
-   * `tcp-probe#ping` will attempt to connect to `address`
-   */
-  attempts?: number
-  /**
-   * The time whichafter each TCP socket will timeout
-   */
-  timeout?: number
-}
-
-/**
  * The result of ping attempt that failed
  */
 export interface IPingError {
@@ -161,7 +138,7 @@ function connect({ address, port, timeout }: IPingOptions): Promise<IConnectionA
  * in the form of an `IPingResult` object
  * @param options The `IPingOptions` object
  */
-export async function ping(options?: IPingPartialOptions): Promise<IPingResult> {
+export async function ping(options?: Partial<IPingOptions>): Promise<IPingResult> {
   // Default ping options
   const opts: IPingOptions = {
     address: '127.0.0.1',
@@ -250,7 +227,8 @@ export async function ping(options?: IPingPartialOptions): Promise<IPingResult> 
 }
 
 /**
- * Probes the given host to check if it is reachable
+ * Makes one attempt to reach the host and returns
+ * a `boolean` indicating whether or not it was successful.
  * @param port The port to probe
  * @param address The address to probe
  * @param timeout The timeout of the probe

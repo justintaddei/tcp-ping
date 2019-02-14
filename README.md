@@ -19,7 +19,7 @@ $ npm install @network-utils/tcp-ping --save
 
 ## Usage
 
-## `ping(options?: IPingPartialOptions): Promise<IPingResult>`
+### `ping(options?: Partial<IPingOptions>): Promise<IPingResult>`
 
 Pings the given host and returns an object containing the latency of the connection
 and any errors that may have occured.
@@ -69,9 +69,9 @@ ping({
 })
 ```
 
-## `probe(port: number, address?: string, timeout?: number): Promise<boolean>`
+### `probe(port: number, address?: string, timeout?: number): Promise<boolean>`
 
-Makes one attempt to reach the host and return a boolean indicating whether it was successful or not.  
+Makes one attempt to reach the host and returns a `boolean` indicating whether or not it was successful.  
 If `address` is not provided it will default to `'127.0.0.1'`.  
 If `timeout` is not provided it will default to `3000`.
 
@@ -90,8 +90,9 @@ const hostReachable = await probe(80, '192.168.1.47', 500)
 
 ## Errors
 
-All methods will throw an `"Invalid IP"` error if the `address` provided is malformed.  
-All methods will throw a `"Negative port"` error if `port < 1`.
+- All methods will throw an `"Invalid IP"` error if the `address` provided is malformed.
+- All methods will throw a `"Negative port"` error if `port < 1`.
+- All errors thrown by the underlying socket will be caught
 
 ---
 
