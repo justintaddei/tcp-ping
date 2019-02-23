@@ -19,7 +19,7 @@ $ npm install @network-utils/tcp-ping --save
 
 ## Usage
 
-### `ping(options?: Partial<IPingOptions>): Promise<IPingResult>`
+### `ping(options?: Partial<IPingOptions>, progress?: (progress, total) => void): Promise<IPingResult>`
 
 Pings the given host and returns an object containing the latency of the connection
 and any errors that may have occured.
@@ -43,7 +43,7 @@ ping({
   // before assuming an attempt has failed?
   // Default is 3000 (3 seconds)
   timeout: 3000
-}).then(result => {
+}, update).then(result => {
   console.log('ping result:', result)
 
 
@@ -67,6 +67,16 @@ ping({
       }
     }
 })
+
+function update(progress, total) {
+  console.log(progress, '/', total)
+  /*
+    1 / 10
+    2 / 10
+    3 / 10
+    ...
+  */
+}
 ```
 
 ### `probe(port: number, address?: string, timeout?: number): Promise<boolean>`

@@ -138,7 +138,10 @@ function connect({ address, port, timeout }: IPingOptions): Promise<IConnectionA
  * in the form of an `IPingResult` object
  * @param options The `IPingOptions` object
  */
-export async function ping(options?: Partial<IPingOptions>): Promise<IPingResult> {
+export async function ping(
+  options?: Partial<IPingOptions>,
+  progress?: (progress: number, total: number) => void
+): Promise<IPingResult> {
   // Default ping options
   const opts: IPingOptions = {
     address: '127.0.0.1',
@@ -160,7 +163,7 @@ export async function ping(options?: Partial<IPingOptions>): Promise<IPingResult
   const connectionResults: IConnectionAttempt[] = []
 
   // Try to connect to the given host
-  for (let i = 0; i < opts.attempts; i++)
+  for (let i = 0; i < opts.attempts; i++) {
     connectionResults.push({
       // i + 1 so the first attempt is `attempt 1`
       // instead of `attempt 0`
@@ -168,6 +171,8 @@ export async function ping(options?: Partial<IPingOptions>): Promise<IPingResult
       result: await connect(opts)
     })
 
+    if (typeof progress === 'function') progress(i + 1, opts.attempts)
+  }
   /**
    * The result of this ping
    */

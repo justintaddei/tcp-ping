@@ -4,7 +4,13 @@ import { ping, probe } from '../src/index'
 
 describe('Ping localhost', () => {
   test('Ping 127.0.0.1 on an open port', async done => {
-    await expect(ping({ port: 1 })).resolves.toBeInstanceOf(Object)
+    expect.assertions(7)
+    await expect(
+      ping({ port: 1, attempts: 3 }, (progress, total) => {
+        expect(total).toBe(3)
+        expect(progress).toBeLessThanOrEqual(total)
+      })
+    ).resolves.toBeInstanceOf(Object)
     done()
   })
 
