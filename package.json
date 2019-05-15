@@ -1,6 +1,6 @@
 {
-  "name": "@network-utils/tcp-ping",
-  "version": "1.1.0",
+  "name": "network-utils-tcp-ping",
+  "version": "1.1.1",
   "description": "A simple TCP ping util, written in Typescript, to test the reachability and latency of a host.",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -17,12 +17,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/justintaddei/tcp-ping.git"
+    "url": "git+https://github.com/zongzw/tcp-ping.git"
   },
   "bugs": {
-    "url": "https://github.com/justintaddei/tcp-ping/issues"
+    "url": "https://github.com/zongzw/tcp-ping/issues"
   },
-  "homepage": "https://github.com/justintaddei/tcp-ping",
+  "homepage": "https://github.com/zongzw/tcp-ping",
   "engines": {
     "node": ">=8.10.0"
   },
