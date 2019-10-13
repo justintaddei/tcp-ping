@@ -30,7 +30,7 @@ and any errors that may have occured.
 import { ping } from '@network/tcp-ping'
 
 ping({
-  // The IP address of the host you want
+  // The IP address or hostname of the host you want
   // to ping. Defaults to 127.0.0.1 (localhost)
   address: '192.168.1.47',
   // How many times do you want want to
