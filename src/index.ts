@@ -1,4 +1,4 @@
-import { isIP, Socket } from 'net'
+import { Socket } from 'net'
 
 /**
  * Ping Options
@@ -152,8 +152,9 @@ export async function ping(
     ...options
   }
 
+  // Removed to allow pinging hostnames
   // Make sure this is a real IP address
-  if (!isIP(opts.address)) throw Error('Invalid IP')
+  // if (!isIP(opts.address)) throw Error('Invalid IP')
 
   if (opts.port < 1) throw RangeError('Negative port')
 

@@ -100,7 +100,6 @@ const hostReachable = await probe(80, '192.168.1.47', 500)
 
 ## Errors
 
-- All methods will throw an `"Invalid IP"` error if the `address` provided is malformed.
 - All methods will throw a `"Negative port"` error if `port < 1`.
 
 ---

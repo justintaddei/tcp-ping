@@ -36,11 +36,12 @@ describe('Probe localhost', () => {
 })
 
 describe('Valid options', () => {
-  test('Throws "Invalid IP" error when an invalid IP is given', async done => {
+  // Removed to allow pinging hostnames
+  /* test('Throws "Invalid IP" error when an invalid IP is given', async done => {
     await expect(ping({ address: 'not an ip address' })).rejects.toThrowError('Invalid IP')
     await expect(probe(80, 'not an ip address')).rejects.toThrowError('Invalid IP')
     done()
-  })
+  }) */
 
   test('Throws "Negative port" error when the port is less than 1', async done => {
     await expect(ping({ port: 0 })).rejects.toThrowError('Negative port')
