@@ -1,6 +1,6 @@
 {
   "name": "@network-utils/tcp-ping",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "A simple TCP ping util, written in Typescript, to test the reachability and latency of a host.",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
