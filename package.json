@@ -1,13 +1,13 @@
 {
   "name": "@network-utils/tcp-ping",
-  "version": "1.2.1",
+  "version": "1.2.2",
   "description": "A simple TCP ping util, written in Typescript, to test the reachability and latency of a host.",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
     "test": "jest --config jestconfig.json",
     "build": "tsc",
-    "format": "prettier --write \"src/**/*.ts\" \"src/**/*.js\"",
+    "format": "prettier --write \"src/**/*.ts\"",
     "lint": "tslint -p tsconfig.json",
     "prepare": "npm run build",
     "prepublishOnly": "npm test && npm run lint",
