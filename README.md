@@ -1,6 +1,6 @@
 # tcp-ping
 
-![](https://img.shields.io/travis/justintaddei/tcp-ping.svg?style=flat)
+[![checks](https://github.com/justintaddei/tcp-ping/actions/workflows/tests.yml/badge.svg?branch=master)](https://github.com/justintaddei/tcp-ping/actions/workflows/tests.yml)
 ![](https://img.shields.io/github/issues-raw/justintaddei/tcp-ping.svg?style=flat)
 ![](https://img.shields.io/npm/v/@network-utils/tcp-ping.svg?style=flat)
 ![](https://img.shields.io/npm/dt/@network-utils/tcp-ping.svg?style=flat)
