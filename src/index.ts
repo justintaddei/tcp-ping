@@ -91,7 +91,7 @@ export interface IConnectionAttempt {
  * @param options The `IPingOptions` to use for this connection
  */
 function connect({ address, port, timeout }: IPingOptions): Promise<IConnectionAttempt['result']> {
-  return new Promise(resolve => {
+  return new Promise((resolve) => {
     // Create a new tcp scoket
     const socket = new Socket()
     // Save the current time so we can calculate latency
@@ -114,7 +114,7 @@ function connect({ address, port, timeout }: IPingOptions): Promise<IConnectionA
     })
 
     // Make sure we catch any errors thrown by the socket
-    socket.on('error', error => {
+    socket.on('error', (error) => {
       // We don't need the socket anymore
       // so we should destroy it
       socket.destroy()
@@ -149,7 +149,7 @@ export async function ping(
     port: 80,
     timeout: 3000,
     // Otherwrite default options
-    ...options
+    ...options,
   }
 
   // Removed to allow pinging hostnames
@@ -169,7 +169,7 @@ export async function ping(
       // i + 1 so the first attempt is `attempt 1`
       // instead of `attempt 0`
       attemptNumber: i + 1,
-      result: await connect(opts)
+      result: await connect(opts),
     })
 
     if (typeof progress === 'function') progress(i + 1, opts.attempts)
@@ -182,7 +182,7 @@ export async function ping(
     errors: [],
     maximumLatency: 0,
     minimumLatency: Infinity,
-    options: opts
+    options: opts,
   }
 
   /**
@@ -200,7 +200,7 @@ export async function ping(
       result.errors.push({
         attempt: attempt.attemptNumber,
         // If error is undefined then throw an unknown error
-        error: attempt.result.error || Error('Unknown error')
+        error: attempt.result.error || Error('Unknown error'),
       })
       // We're done with this iteration
       continue
