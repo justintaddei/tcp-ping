@@ -26,7 +26,7 @@ and any errors that may have occured.
 > **NOTE:** Attempts are not concurrent. As such if a host is unreachable and you provide options { attempts: 60, timeout: 1000 } then `ping` will not resolve for a full minute!
 
 ```typescript
-import { ping } from '@network/tcp-ping'
+import { ping } from '@network-utils/tcp-ping'
 
 ping({
   // The IP address or hostname of the host you want
@@ -85,7 +85,7 @@ If `address` is not provided it will default to `'127.0.0.1'`.
 If `timeout` is not provided it will default to `3000`.
 
 ```typescript
-import { probe } from '@network/tcp-ping'
+import { probe } from '@network-utils/tcp-ping'
 
 probe(80, '192.168.1.47', 500).then(hostReachable => {
   if (hostReachable) console.log('The host is reachable 🙌')
